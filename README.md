@@ -46,17 +46,17 @@ Plaintext
 ## 三、 重要模塊說明 (I/O架構)
 為了方便第三方除錯與後續二次開發，以下列出系統核心模塊的輸入（Input）與輸出（Output）定義：
 
-#1. 特徵工程模塊 add_features(df)
+1. 特徵工程模塊 add_features(df)
 *Input: 原始的 Pandas DataFrame（包含基礎的 sex, score, strikeNumber 等特徵）。
 
 -Output: 擴增後的 DataFrame。新增特徵包含：分數差 (scoreDiff_cat)、關鍵分狀態 (is_critical_point)、發球/拉鋸階段、以及透過 shift 產生的歷史動作轉移特徵 (prev_actionId, action_transition 等)。
 
-#2. 資料集模塊 RallyDataset
+2. 資料集模塊 RallyDataset
 -Input: 特徵張量 X (形狀為 [N, MAXLEN, num_features])、標籤張量 yA, yP, yR 以及有效序列長度 L。
 
 -Output: 透過 PyTorch DataLoader 產生 Batch，供模型訓練迭代使用。支援序列長度動態對齊與遮罩機制（Padding & Masking）。
 
-#3. 核心神經網路 MultiTaskTransformer
+3. 核心神經網路 MultiTaskTransformer
 -Input: * X: 批次編碼後的特徵張量 (batch_size, seq_len, num_features)。
 
 -lengths: 該批次中每筆資料的實際有效長度 (batch_size,)。
@@ -71,7 +71,7 @@ Plaintext
 
 -lr: 拉鋸戰勝負預測 logits (batch_size,)（透過 Attention Pooling 結合全局特徵輸出）。
 
-#4. 損失函數模塊 FocalLoss
+4. 損失函數模塊 FocalLoss
 -Input: 模型的預測 logits 以及真實標籤 targets。
 
 -Output: 純量 Loss 值。本模塊專門處理 pointId 等極端類別不平衡問題，並透過傳入的 weight 參數進行動態類別權重調整。
