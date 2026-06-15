@@ -81,8 +81,11 @@ Output: 純量 Loss 值。本模塊專門處理 pointId 等極端類別不平衡
 1. 執行一鍵訓練與推論
 打開終端機（或 Colab 的儲存格），在檔案所在目錄下執行以下指令：
 
+```
 Bash
 python main.py --epochs 50 --batch 64 --emb 24 --hidden 128 --layers 1 --lr 0.0002
+```
+
 2. 參數說明 (Arguments)
 使用者可透過命令列引數調整模型超參數，方便進行除錯與消融實驗：
 
