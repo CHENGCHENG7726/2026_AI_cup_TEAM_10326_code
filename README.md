@@ -47,7 +47,8 @@ Plaintext
 為了方便第三方除錯與後續二次開發，以下列出系統核心模塊的輸入（Input）與輸出（Output）定義：
 
 1. 特徵工程模塊 add_features(df)
-*Input: 原始的 Pandas DataFrame（包含基礎的 sex, score, strikeNumber 等特徵）。
+
+-Input: 原始的 Pandas DataFrame（包含基礎的 sex, score, strikeNumber 等特徵）。
 
 -Output: 擴增後的 DataFrame。新增特徵包含：分數差 (scoreDiff_cat)、關鍵分狀態 (is_critical_point)、發球/拉鋸階段、以及透過 shift 產生的歷史動作轉移特徵 (prev_actionId, action_transition 等)。
 
