@@ -47,34 +47,34 @@ Plaintext
 為了方便第三方除錯與後續二次開發，以下列出系統核心模塊的輸入（Input）與輸出（Output）定義：
 
 1. 特徵工程模塊 add_features(df)
-Input: 原始的 Pandas DataFrame（包含基礎的 sex, score, strikeNumber 等特徵）。
+-Input: 原始的 Pandas DataFrame（包含基礎的 sex, score, strikeNumber 等特徵）。
 
-Output: 擴增後的 DataFrame。新增特徵包含：分數差 (scoreDiff_cat)、關鍵分狀態 (is_critical_point)、發球/拉鋸階段、以及透過 shift 產生的歷史動作轉移特徵 (prev_actionId, action_transition 等)。
+-Output: 擴增後的 DataFrame。新增特徵包含：分數差 (scoreDiff_cat)、關鍵分狀態 (is_critical_point)、發球/拉鋸階段、以及透過 shift 產生的歷史動作轉移特徵 (prev_actionId, action_transition 等)。
 
 2. 資料集模塊 RallyDataset
-Input: 特徵張量 X (形狀為 [N, MAXLEN, num_features])、標籤張量 yA, yP, yR 以及有效序列長度 L。
+-Input: 特徵張量 X (形狀為 [N, MAXLEN, num_features])、標籤張量 yA, yP, yR 以及有效序列長度 L。
 
-Output: 透過 PyTorch DataLoader 產生 Batch，供模型訓練迭代使用。支援序列長度動態對齊與遮罩機制（Padding & Masking）。
+-Output: 透過 PyTorch DataLoader 產生 Batch，供模型訓練迭代使用。支援序列長度動態對齊與遮罩機制（Padding & Masking）。
 
 3. 核心神經網路 MultiTaskTransformer
-Input: * X: 批次編碼後的特徵張量 (batch_size, seq_len, num_features)。
+-Input: * X: 批次編碼後的特徵張量 (batch_size, seq_len, num_features)。
 
-lengths: 該批次中每筆資料的實際有效長度 (batch_size,)。
+-lengths: 該批次中每筆資料的實際有效長度 (batch_size,)。
 
-Output (多任務輸出): * la: 動作預測 logits (batch_size, seq_len, n_act)。
+-Output (多任務輸出): * la: 動作預測 logits (batch_size, seq_len, n_act)。
 
-lp_main: 主落點預測 logits (batch_size, seq_len, n_pt)。
+-lp_main: 主落點預測 logits (batch_size, seq_len, n_pt)。
 
-lp_side: 落點左右輔助預測 logits (batch_size, seq_len, 4)。
+-lp_side: 落點左右輔助預測 logits (batch_size, seq_len, 4)。
 
-lp_depth: 落點前後輔助預測 logits (batch_size, seq_len, 4)。
+-lp_depth: 落點前後輔助預測 logits (batch_size, seq_len, 4)。
 
-lr: 拉鋸戰勝負預測 logits (batch_size,)（透過 Attention Pooling 結合全局特徵輸出）。
+-lr: 拉鋸戰勝負預測 logits (batch_size,)（透過 Attention Pooling 結合全局特徵輸出）。
 
 4. 損失函數模塊 FocalLoss
-Input: 模型的預測 logits 以及真實標籤 targets。
+-Input: 模型的預測 logits 以及真實標籤 targets。
 
-Output: 純量 Loss 值。本模塊專門處理 pointId 等極端類別不平衡問題，並透過傳入的 weight 參數進行動態類別權重調整。
+-Output: 純量 Loss 值。本模塊專門處理 pointId 等極端類別不平衡問題，並透過傳入的 weight 參數進行動態類別權重調整。
 
 ## 四、 重新訓練
 
@@ -89,6 +89,7 @@ python main.py --epochs 50 --batch 64 --emb 24 --hidden 128 --layers 1 --lr 0.00
 2. 參數說明 (Arguments)
 使用者可透過命令列引數調整模型超參數，方便進行除錯與消融實驗：
 
+```
 --train: 訓練集檔名 (預設 train.csv)
 
 --test: 測試集檔名 (預設 test.csv)
@@ -110,4 +111,4 @@ python main.py --epochs 50 --batch 64 --emb 24 --hidden 128 --layers 1 --lr 0.00
 --drop: Dropout 機率 (預設 0.15)
 
 --lr: 初始學習率 (預設 2e-4)
-
+```
