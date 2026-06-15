@@ -1,6 +1,6 @@
 # 2026_AI_cup_TEAM_10326_code
 
-本專案提供一套基於 PyTorch 實作的深度學習預測基準程式碼，模型採用具備因果遮罩（Causal Mask）的 Transformer 架構，針對球拍運動的拉鋸戰（Rally）數據進行多任務學習（Multi-Task Learning），能同時預測下一拍動作（Action）、下一拍落點（Point）以及最終發球方是否得分（Rally Winner）。
+程式碼提供一套基於 PyTorch 實作的深度學習預測基準程式碼，模型採用具備因果遮罩（Causal Mask）的 Transformer 架構，針對球拍運動的拉鋸戰（Rally）數據進行多任務學習（Multi-Task Learning），能同時預測下一拍動作（Action）、下一拍落點（Point）以及最終發球方是否得分（Rally Winner）。
 
 ---
 
