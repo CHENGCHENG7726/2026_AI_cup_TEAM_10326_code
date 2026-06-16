@@ -36,7 +36,7 @@ scikit-learn >= 1.0.0
 
 ```
 Plaintext
-├── main.py                     # 主訓練與推論程式碼
+├── code.py                     # 主訓練與推論程式碼
 ├── train.csv                   # 訓練集資料 (主辦方提供)
 ├── test.csv                    # 測試集資料 (主辦方提供)
 ├── sample_submission.csv       # 繳交格式範例檔 (主辦方提供)
