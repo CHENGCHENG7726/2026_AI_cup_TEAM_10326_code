@@ -82,8 +82,8 @@ Plaintext
 1. 執行一鍵訓練與推論
 打開終端機（或 Colab 的儲存格），在檔案所在目錄下執行以下指令：
 
+
 ```
-Bash
 python code.py --epochs 50 --batch 64 --emb 24 --hidden 128 --layers 1 --lr 0.0002
 ```
 
