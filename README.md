@@ -84,7 +84,7 @@ Plaintext
 
 ```
 Bash
-python main.py --epochs 50 --batch 64 --emb 24 --hidden 128 --layers 1 --lr 0.0002
+python code.py --epochs 50 --batch 64 --emb 24 --hidden 128 --layers 1 --lr 0.0002
 ```
 
 2. 參數說明 (Arguments)
